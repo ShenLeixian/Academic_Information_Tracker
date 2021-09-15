@@ -359,7 +359,7 @@ window.onload = function () {
                 td3.style.textDecoration = 'line-through'
             }
             else if (targetDate3 - Date.now() < 1000 * 60 * 60 * 24 * 30) {
-                td3.style.color = 'red'
+                // td3.style.color = 'red'
                 td3.style.fontWeight = 'bolder'
                 var delta = targetDate3 - Date.now()
                 var days = Math.floor(delta / (24 * 60 * 60 * 1000))
@@ -370,7 +370,7 @@ window.onload = function () {
                 td4.style.textDecoration = 'line-through'
             }
             else if (targetDate4 - Date.now() < 1000 * 60 * 60 * 24 * 30) {
-                td4.style.color = 'red'
+                // td4.style.color = 'red'
                 td4.style.fontWeight = 'bolder'
                 var delta = targetDate4 - Date.now()
                 var days = Math.floor(delta / (24 * 60 * 60 * 1000))
