@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title >Academic Information Tracker</title>
+    <link href="./css/bootstrap.css" rel="stylesheet">
+    <link href="./css/bootstrap-responsive.css"  rel="stylesheet">
+    <link href="./css/custom.css"  rel="stylesheet">
+    <link href="./css/docs.css"  rel="stylesheet">
+	<link href="./css/bootstrap.min.css"  rel="stylesheet">
+	<!-- <link href="./css/style.css" rel="stylesheet"> -->
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="./js/show.js" type="text/javascript" ></script>
+	<!-- <script src="./js/filter.js" type="text/javascript" ></script> -->
+	
+	
+
+</head>
+<body data-target="#navbar" data-twttr-rendered="true">
+    <div class="container">
+        <div class="row">
+            <div class="page-header" align="center">
+                <h3 class="text-center">Academic Information Tracker</h3>
+                <h6 style="text-align:center;padding-top:10px;">Update : 2021-9-16</h6>
+				<h6 id="time"></h6>
+				<script>
+					function show(){
+					var now = new Date();
+					var time = now.toLocaleString('chinese', { hour12: false }); 
+					document.getElementById("time").innerHTML=time;
+					}
+					setInterval("show()", 1000);
+				</script>
+            </div>
+			<!-- VIS:Visualization, VR:Virtual Reality, CG:Computer Graphics, HCI:Human-Computer Interaction, DM:Data Mining, AI:Artificial Intelligence, NLP:Natural Language Processing, CV:Computer Vision, MM:MultiMedia, ID:InterDisciplinary  -->
+			<form class="form-horizontal">
+				<div class="form-group" id="area">
+				  
+				  <div class="col-md-3 col-xs-4">
+					<div class="checkbox">
+					  <label>
+						<input type="checkbox"  id="VIS-checkbox" class="" checked=true"> <strong>VIS:Visualization</strong>
+					  </label>
+					</div>
+				  </div>
+				  
+				  <div class="col-md-3 col-xs-4">
+					<div class="checkbox">
+					  <label>
+						<input type="checkbox"  id="VR-checkbox" class="" checked=true> <strong>VR:Virtual Reality</strong>
+					  </label>
+					</div>
+				  </div>
+				  
+				  <div class="col-md-3 col-xs-4">
+					<div class="checkbox">
+					  <label>
+						<input type="checkbox"  id="CG-checkbox" class="" checked=true> <strong>CG:Computer Graphics</strong>
+					  </label>
+					</div>
+				  </div>
+				  
+				  <div class="col-md-3 col-xs-4">
+					<div class="checkbox">
+					  <label>
+						<input type="checkbox"  id="HCI-checkbox" class="" checked=true> <strong>HCI:Human-Computer Interaction</strong>
+					  </label>
+					</div>
+				  </div>
+				  
+				  <div class="col-md-3 col-xs-4">
+					<div class="checkbox">
+					  <label>
+						<input type="checkbox"  id="DM-checkbox" class="" checked=true> <strong>DM:Data Mining</strong>
+					  </label>
+					</div>
+				  </div>
+				  
+				  <div class="col-md-3 col-xs-4">
+					<div class="checkbox">
+					  <label>
+						<input type="checkbox"  id="AI-checkbox" class="" checked=true> <strong>AI:Artificial Intelligence</strong>
+					  </label>
+					</div>
+				  </div>
+
+				  <div class="col-md-3 col-xs-4">
+					<div class="checkbox">
+					  <label>
+						<input type="checkbox"  id="NLP-checkbox" class="" checked=true> <strong>NLP:Natural Language Processing</strong>
+					  </label>
+					</div>
+				  </div>
+
+				  <div class="col-md-3 col-xs-4">
+					<div class="checkbox">
+					  <label>
+						<input type="checkbox"  id="CV-checkbox" class="" checked=true> <strong>CV:Computer Vision</strong>
+					  </label>
+					</div>
+				  </div>
+				  
+				  <div class="col-md-3 col-xs-4">
+					<div class="checkbox">
+					  <label>
+						<input type="checkbox"  id="MM-checkbox" class="" checked=true> <strong>MM:MultiMedia</strong>
+					  </label>
+					</div>
+				  </div>
+
+				  <div class="col-md-3 col-xs-4">
+					<div class="checkbox">
+					  <label>
+						<input type="checkbox"  id="ID-checkbox" class="" checked=true> <strong>ID:InterDisciplinary </strong>
+					  </label>
+					</div>
+				  </div>
+				</div>
+			  </form>
+			<script>
+				document.getElementById("VIS-checkbox").checked=true;
+				document.getElementById("VR-checkbox").checked=true;
+				document.getElementById("CG-checkbox").checked=true;
+				document.getElementById("HCI-checkbox").checked=true;
+				document.getElementById("DM-checkbox").checked=true;
+				document.getElementById("AI-checkbox").checked=true;
+				document.getElementById("NLP-checkbox").checked=true;
+				document.getElementById("CV-checkbox").checked=true;
+				document.getElementById("MM-checkbox").checked=true;
+				document.getElementById("ID-checkbox").checked=true;
+			</script>
+
+			Search:<input type="text" id="input" class="input"></input>
+			<table align="center" border="1" cellpadding="8" cellspacing="2">
+                <tbody>
+                <tr>
+                    <td style="width:10%;text-align: center;font-size:18px;"><strong>CCF/TH-CPL Rank</strong></td>					
+                    <td style="width:25%;text-align: center;font-size:18px;"><strong>Conference Name</strong></td>
+                    <td style="width:16%;text-align: center;font-size:18px;"><strong>Conference Location</strong></td>
+					<td style="width:16%;text-align: center;font-size:18px;text-decoration:underline;"><strong>Abstract Deadline</strong></td>
+                    <td style="width:16%;text-align: center;font-size:18px;text-decoration:underline;"><strong>Submission Deadline</strong></td>
+                    <td style="width:16%;text-align: center;font-size:18px;text-decoration:underline;"><strong>Conference Date</strong></td>
+                    <td style="width:20%;text-align: center;font-size:18px;"><strong>Website</strong></td>
+                    <td style="width:5%;text-align: center;font-size:18px;text-decoration:underline;"><strong>Area</strong></td>
+                </tr>
+
+				<!-- VIS -->
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>A/A</strong></td>
+					<td style="width:20%;"><strong>VIS 2021</strong><strong>:</strong>&nbsp;IEEE Visualization Conference</td>
+					<td style="width:16%;">Online </td>
+					<td style="width:16%;">Mar 24, 2021 </td>
+					<td style="width:16%;">Mar 31, 2021 </td>
+					<td style="width:14%;">Oct 24 - Oct 29, 2021</td>
+					<td style="width:20%;"><a href="http://ieeevis.org/year/2021/welcome">http://ieeevis.org/year/2021/welcome</a></td>
+					<td style="width:7%;text-align:center;">VIS</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>B/B</strong></td>
+					<td style="width:20%;"><strong>EuroVis 2022</strong><strong>:</strong>&nbsp;Eurographics Conference on Visualization</td>
+					<td style="width:16%;">Rome, Italy  &nbsp<img style="vertical-align:middle;" width=15 src="./svg/it.svg"></td>
+					<td style="width:16%;">Nov 24, 2021 </td>
+					<td style="width:16%;">Dec 2, 2021 </td>
+					<td style="width:14%;">Jun 13 - Jun 17, 2022</td>
+					<td style="width:20%;"><a href="https://conferences.eg.org/eurovis2022/">https://conferences.eg.org/eurovis2022/</a></td>
+					<td style="width:7%;text-align:center;">VIS</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>C/B</strong></td>
+					<td style="width:20%;"><strong>PacificVis 2022</strong><strong>:</strong>&nbsp;IEEE Pacific Visualization Symposium</td>
+					<td style="width:16%;">Tsukuba, Japan  &nbsp<img style="vertical-align:middle;" width=15 src="./svg/jp.svg"></td>
+					<td style="width:16%;">Oct 15, 2021 </td>
+					<td style="width:16%;">Oct 22, 2021 </td>
+					<td style="width:14%;">Apr 11 - Apr 14, 2022</td>
+					<td style="width:20%;"><a href="https://pvis2022.github.io/pvis2022/">https://pvis2022.github.io/pvis2022/</a></td>
+					<td style="width:7%;text-align:center;">VIS</td>
+				</tr>
+				<!-- VR -->
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>A/A</strong></td>
+					<td style="width:20%;"><strong>VR 2022</strong><strong>:</strong>&nbsp;IEEE Conference on Virtual Reality and 3D User Interfaces</td>
+					<td style="width:16%;">Christchurch, New Zealand  &nbsp<img style="vertical-align:middle;" width=15 src="./svg/nz.svg"></td>
+					<td style="width:16%;">Nov 1, 2021 </td>
+					<td style="width:16%;">Nov 5, 2021 </td>
+					<td style="width:14%;">Mar 12 - Mar 15, 2022</td>
+					<td style="width:20%;"><a href="https://ieeevr.org/2022/">https://ieeevr.org/2022/</a></td>
+					<td style="width:7%;text-align:center;">VR</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>B/B</strong></td>
+					<td style="width:20%;"><strong>ISMAR 2022</strong><strong>:</strong>&nbsp;International Symposium on Mixed and Augmented Reality</td>
+					<td style="width:16%;">Bari, Italy  &nbsp<img style="vertical-align:middle;" width=15 src="./svg/it.svg"></td>
+					<td style="width:16%;">May 24, 2021 </td>
+					<td style="width:16%;">May 28, 2021 </td>
+					<td style="width:14%;">Oct 4 - Oct 8, 2021</td>
+					<td style="width:20%;"><a href="https://ismar21.org/">https://ismar21.org/</a></td>
+					<td style="width:7%;text-align:center;">VR</td>
+				</tr>
+				<!-- CG -->
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>A/A</strong></td>
+					<td style="width:20%;"><strong>SIGGRAPH 2021</strong><strong>:</strong>&nbsp;ACM SIGGRAPH Annual Conference</td>
+					<td style="width:16%;">Online</td>
+					<td style="width:16%;">Jan 26, 2022 </td>
+					<td style="width:16%;">Jan 27, 2022</td>
+					<td style="width:14%;">Aug 7 – Aug 11, 2022</td>
+					<td style="width:20%;"><a href="https://s2022.siggraph.org/">https://s2022.siggraph.org/</a></td>
+					<td style="width:7%;text-align:center;">CG</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>B/B</strong></td>
+					<td style="width:20%;"><strong>EG 2022</strong><strong>:</strong>&nbsp;Eurographics</td>
+					<td style="width:16%;">Reims, France   &nbsp<img style="vertical-align:middle;" width=15 src="./svg/fr.svg" ></td>
+					<td style="width:16%;">Sep 26, 2021</td>
+					<td style="width:16%;">Oct 3, 2021 </td>
+					<td style="width:14%;">Apr 25 – Apr 29, 2022</td>
+					<td style="width:20%;"><a href="https://eg2022.univ-reims.fr/">https://eg2022.univ-reims.fr/</a></td>
+					<td style="width:7%;text-align:center;">CG</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>B/B</strong></td>
+					<td style="width:20%;"><strong>EGSR 2021</strong><strong>:</strong>&nbsp;Eurographics Symposium on Rendering</td>
+					<td style="width:16%;">Saarbrücken, Germany  &nbsp<img style="vertical-align:middle;" width=15 src="./svg/de.svg"></td>
+					<td style="width:16%;">Apr 9, 2021 </td>
+					<td style="width:16%;">Apr 16, 2021</td>
+					<td style="width:14%;">Jun 29 – Jul 2, 2021</td>
+					<td style="width:20%;"><a href="https://egsr.eu/2021/">https://egsr.eu/2021/</a></td>
+					<td style="width:7%;text-align:center;">CG</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>B/B</strong></td>
+					<td style="width:20%;"><strong>SGP 2021</strong><strong>:</strong>&nbsp;Eurographics Symposium on Geometry Processing</td>
+					<td style="width:16%;">Online</td>
+					<td style="width:16%;">Apr 19, 2021 </td>
+					<td style="width:16%;">Apr 24, 2021</td>
+					<td style="width:14%;">Jul 12 – Jul 14, 2021</td>
+					<td style="width:20%;"><a href="https://sgp2021.github.io/">https://sgp2021.github.io/</a></td>
+					<td style="width:7%;text-align:center;">CG</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>B/B</strong></td>
+					<td style="width:20%;"><strong>SCA 2021</strong><strong>:</strong>&nbsp;ACM/Eurographics Symposium on Computer Animation</td>
+					<td style="width:16%;">Online</td>
+					<td style="width:16%;">May 4, 2021 </td>
+					<td style="width:16%;">May 7, 2021</td>
+					<td style="width:14%;">Sep 7 – Sep 10, 2021</td>
+					<td style="width:20%;"><a href="https://computeranimation.org/">https://computeranimation.org/</a></td>
+					<td style="width:7%;text-align:center;">CG</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>B/B</strong></td>
+					<td style="width:20%;"><strong>SI3D 2022</strong><strong>:</strong>&nbsp;ACM Symposium on Interactive 3D Graphics</td>
+					<td style="width:16%;">Online</td>
+					<td style="width:16%;">Dec 20, 2021 (TBD)</td>
+					<td style="width:16%;">Dec 20, 2021 (TBD)</td>
+					<td style="width:14%;">Apr 20 - Apr 22, 2022 (TBD)</td>
+					<td style="width:20%;"><a href="http://i3dsymposium.github.io/2022/">http://i3dsymposium.github.io/2022/</a></td>
+					<td style="width:7%;text-align:center;">CG</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>B/B</strong></td>
+					<td style="width:20%;"><strong>PG 2022</strong><strong>:</strong>&nbsp;Pacific Graphics: The Pacific Conference on Computer Graphics and Applications</td>
+					<td style="width:16%;">Aotearoa, New Zealand  &nbsp<img style="vertical-align:middle;" width=15 src="./svg/nz.svg"></td>
+					<td style="width:16%;">Jun 1, 2021 </td>
+					<td style="width:16%;">Jun 2, 2021</td>
+					<td style="width:14%;">Oct 18 – Oct 21, 2021</td>
+					<td style="width:20%;"><a href="https://www.pg2021.org/">https://www.pg2021.org/</a></td>
+					<td style="width:7%;text-align:center;">CG</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>B/B</strong></td>
+					<td style="width:20%;"><strong>DCC 2022</strong><strong>:</strong>&nbsp;Data Compression Conference</td>
+					<td style="width:16%;">Salt Lake City, US  &nbsp<img style="vertical-align:middle;" width=15 src="./svg/us.svg"></td>
+					<td style="width:16%;">Nov 1, 2021</td>
+					<td style="width:16%;">Nov 1, 2021 </td>
+					<td style="width:14%;">Mar 22 – Mar 25, 2022</td>
+					<td style="width:20%;"><a href="https://www.cs.brandeis.edu/~dcc/index.html">https://www.cs.brandeis.edu/~dcc/index.html</a></td>
+					<td style="width:7%;text-align:center;">CG</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>C/B</strong></td>
+					<td style="width:20%;"><strong>ICIP 2022</strong><strong>:</strong>&nbsp;International Conference on Image Processing</td>
+					<td style="width:16%;">Bordeaux, France   &nbsp<img style="vertical-align:middle;" width=15 src="./svg/fr.svg" ></td>
+					<td style="width:16%;">Jan 13, 2022 (TBD)</td>
+					<td style="width:16%;">Jan 13, 2022 (TBD)</td>
+					<td style="width:14%;">Oct 16 - Oct 19, 2022</td>
+					<td style="width:20%;"><a href="http://2022.ieeeicip.org/">http://2022.ieeeicip.org</a></td>
+					<td style="width:7%;text-align:center;">CG</td>
+				</tr>
+				<!-- HCI -->
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>A/A</strong></td>
+					<td style="width:20%;"><strong>CHI 2021</strong><strong>:</strong>&nbsp;ACM Conference on Human Factors in Computing Systems</td>
+					<td style="width:16%;">New Orleans, LA, USA  &nbsp<img style="vertical-align:middle;" width=15 src="./svg/us.svg"></td>
+					<td style="width:16%;">Sep 2, 2021</td>
+					<td style="width:16%;">Sep 9, 2021 </td>
+					<td style="width:14%;">Apr 30 – May 6, 2022</td>
+					<td style="width:20%;"><a href="https://chi2022.acm.org/">https://chi2022.acm.org/</a></td>
+					<td style="width:7%;text-align:center;">HCI</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>A/A</strong></td>
+					<td style="width:20%;"><strong>CSCW 2022</strong><strong>:</strong>&nbsp;ACM Conference on Computer Supported Cooperative Work and Social Computing</td>
+					<td style="width:16%;">Taipei, Taiwan, China  &nbsp<img style="vertical-align:middle;" width=15 src="./svg/cn.svg"></td>
+					<td style="width:16%;">Jan 15, 2022</td>
+					<td style="width:16%;">Jan 15, 2022 </td>
+					<td style="width:14%;">Nov 12 – Nov 16, 2022</td>
+					<td style="width:20%;"><a href="https://cscw.acm.org/2022/index.html">https://cscw.acm.org/2022/index.html</a></td>
+					<td style="width:7%;text-align:center;">HCI</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>A/A</strong></td>
+					<td style="width:20%;"><strong>UbiComp 2021</strong><strong>:</strong>&nbsp;ACM International Conference on Ubiquitous Computing</td>
+					<td style="width:16%;">Online </td>
+					<td style="width:16%;">May 15, 2021</td>
+					<td style="width:16%;">May 15, 2021 </td>
+					<td style="width:14%;">Sep 21 – Sep 26, 2021</td>
+					<td style="width:20%;"><a href="https://www.ubicomp.org/ubicomp2021/">https://www.ubicomp.org/ubicomp2021/</a></td>
+					<td style="width:7%;text-align:center;">HCI</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>B/A</strong></td>
+					<td style="width:20%;"><strong>UIST 2021</strong><strong>:</strong>&nbsp;ACM Symposium on User Interface Software and Technology</td>
+					<td style="width:16%;">online</td>
+					<td style="width:16%;">Apr 20, 2021</td>
+					<td style="width:16%;">May 6, 2021 </td>
+					<td style="width:14%;">Oct 10 – Oct 14, 2021</td>
+					<td style="width:20%;"><a href="https://uist.acm.org/uist2021/">https://uist.acm.org/uist2021/</a></td>
+					<td style="width:7%;text-align:center;">HCI</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>B/B</strong></td>
+					<td style="width:20%;"><strong>IUI 2021</strong><strong>:</strong>&nbsp;ACM International Conference on Intelligent User Interfaces</td>
+					<td style="width:16%;">Helsinki, Finland  &nbsp<img style="vertical-align:middle;" width=15 src="./svg/fi.svg"></td>
+					<td style="width:16%;">Oct 1, 2021</td>
+					<td style="width:16%;">Oct 8, 2021 </td>
+					<td style="width:14%;">Mar 22 – Mar 25, 2022</td>
+					<td style="width:20%;"><a href="https://iui.acm.org/2022/">https://iui.acm.org/2022/</a></td>
+					<td style="width:7%;text-align:center;">HCI</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>B/B</strong></td>
+					<td style="width:20%;"><strong>MobileHCI 2021</strong><strong>:</strong>&nbsp;International Conference on Human Computer Interaction with Mobile Devices and Services</td>
+					<td style="width:16%;">Toulouse, France &nbsp<img style="vertical-align:middle;" width=15 src="./svg/fr.svg"></td>
+					<td style="width:16%;">Feb 4, 2021</td>
+					<td style="width:16%;">Feb 4, 2021 </td>
+					<td style="width:14%;">Sep 27 – Oct 1, 2021</td>
+					<td style="width:20%;"><a href="https://mobilehci.acm.org/2021/">https://mobilehci.acm.org/2021/</a></td>
+					<td style="width:7%;text-align:center;">HCI</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>C/B</strong></td>
+					<td style="width:20%;"><strong>DIS 2021</strong><strong>:</strong>&nbsp;ACM Conference on Designing Interactive Systems</td>
+					<td style="width:16%;">Online</td>
+					<td style="width:16%;">Feb 4, 2021</td>
+					<td style="width:16%;">Feb 11, 2021 </td>
+					<td style="width:14%;">Jun 28 – Jul 2, 2021</td>
+					<td style="width:20%;"><a href="https://dis.acm.org/2021/">https://dis.acm.org/2021/</a></td>
+					<td style="width:7%;text-align:center;">HCI</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>C/B</strong></td>
+					<td style="width:20%;"><strong>ICMI 2021</strong><strong>:</strong>&nbsp;ACM International Conference on Multimodal Interaction</td>
+					<td style="width:16%;">Montreal, Canada &nbsp<img style="vertical-align:middle;" width=15 src="./svg/ca.svg"></td>
+					<td style="width:16%;">Jun 2, 2021</td>
+					<td style="width:16%;">Jun 2, 2021 </td>
+					<td style="width:14%;">Oct 18 – Oct 22, 2021</td>
+					<td style="width:20%;"><a href="https://icmi.acm.org/2021/">https://icmi.acm.org/2021/</a></td>
+					<td style="width:7%;text-align:center;">HCI</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>C/-</strong></td>
+					<td style="width:20%;"><strong>AVI 2020</strong><strong>:</strong>&nbsp;International Working Conference on Advanced Visual Interfaces</td>
+					<td style="width:16%;">Ischia Island, Italy  &nbsp<img style="vertical-align:middle;" width=15 src="./svg/it.svg"></td>
+					<td style="width:16%;">Jan 28, 2020</td>
+					<td style="width:16%;">Feb 4, 2020 </td>
+					<td style="width:14%;">Sep 28 – Oct 2, 2020</td>
+					<td style="width:20%;"><a href="https://sites.google.com/unisa.it/avi2020/home">https://sites.google.com/unisa.it/avi2020/home</a></td>
+					<td style="width:7%;text-align:center;">HCI</td>
+				</tr>
+
+				<!-- DM -->
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>A/A</strong></td>
+					<td style="width:20%;"><strong>SIGMOD 2022</strong><strong>:</strong>&nbsp;ACM Conference on Management of Data ACM</td>
+					<td style="width:16%;">Philadelphia, PA, USA   &nbsp<img style="vertical-align:middle;" width=15 src="./svg/us.svg" ></td>
+					<td style="width:16%;">Jul 2, 2021 </td>
+					<td style="width:16%;">Jul 2, 2021</td>
+					<td style="width:14%;">Jun 12 - Jun 17, 2022</td>
+					<td style="width:20%;"><a href="https://2022.sigmod.org/">https://2022.sigmod.org/</a></td>
+					<td style="width:7%;text-align:center;">DM</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>A/A</strong></td>
+					<td style="width:20%;"><strong>SIGKDD 2021</strong><strong>:</strong>&nbsp;ACM SIGKDD International Conference on Knowledge discovery and data mining</td>
+					<td style="width:16%;">Singapore   &nbsp<img style="vertical-align:middle;" width=15 src="./svg/sg.svg" ></td>
+					<td style="width:16%;">Feb 8, 2021 </td>
+					<td style="width:16%;">Feb 8, 2021</td>
+					<td style="width:14%;">Aug 14 - Aug 18, 2021</td>
+					<td style="width:20%;"><a href="http://www.kdd.org/kdd2021">http://www.kdd.org/kdd2021</a></td>
+					<td style="width:7%;text-align:center;">DM</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>A/A</strong></td>
+					<td style="width:20%;"><strong>ICDE 2022</strong><strong>:</strong>&nbsp;IEEE International Conference on Data Engineering</td>
+					<td style="width:16%;">Online</td>
+					<td style="width:16%;">Jul 21, 2021 </td>
+					<td style="width:16%;">Jul 21, 2021</td>
+					<td style="width:14%;">May 9 - May 12, 2022</td>
+					<td style="width:20%;"><a href="https://icde2022.ieeecomputer.my/">https://icde2022.ieeecomputer.my</a></td>
+					<td style="width:7%;text-align:center;">DM</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>A/A</strong></td>
+					<td style="width:20%;"><strong>VLDB 2022</strong><strong>:</strong>&nbsp;International Conference on Very Large Data Bases</td>
+					<td style="width:16%;">Sydney, Australia &nbsp<img style="vertical-align:middle;" width=15 src="./svg/au.svg" ></td>
+					<td style="width:16%;">Mar 1, 2022 </td>
+					<td style="width:16%;">Mar 1, 2022</td>
+					<td style="width:14%;">Sep 5 - Sep 9, 2022</td>
+					<td style="width:20%;"><a href="https://vldb.org/2022/">https://vldb.org/2022/</a></td>
+					<td style="width:7%;text-align:center;">DM</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>A/A</strong></td>
+					<td style="width:20%;"><strong>SIGIR 2022</strong><strong>:</strong>&nbsp;International ACM SIGIR Conference on Research and Development in Information Retrieval</td>
+					<td style="width:16%;">Madrid, Spain   &nbsp<img style="vertical-align:middle;" width=15 src="./svg/es.svg" ></td>
+					<td style="width:16%;">Feb 9, 2022 (TBD)</td>
+					<td style="width:16%;">Feb 9, 2022 (TBD)</td>
+					<td style="width:14%;">Jul 11 - Jul 15, 2022 (TBD)</td>
+					<td style="width:20%;"><a href="https://sigir.org/sigir2022">https://sigir.org/sigir2022</a></td>
+					<td style="width:7%;text-align:center;">DM</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>B/B</strong></td>
+					<td style="width:20%;"><strong>CIKM 2021</strong><strong>:</strong>&nbsp;ACM International Conference on Information and Knowledge Management</td>
+					<td style="width:16%;">Gold Coast, Queensland, Australia   &nbsp<img style="vertical-align:middle;" width=15 src="./svg/au.svg" ></td>
+					<td style="width:16%;">0 0, 2021 </td>
+					<td style="width:16%;">May 26, 2021</td>
+					<td style="width:14%;">Nov 1 - Nov 5, 2021</td>
+					<td style="width:20%;"><a href="https://www.cikm2021.org/">https://www.cikm2021.org</a></td>
+					<td style="width:7%;text-align:center;">DM</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>B/B</strong></td>
+					<td style="width:20%;"><strong>DASFAA 2022</strong><strong>:</strong>&nbsp;Database Systems for Advanced Applications</td>
+					<td style="width:16%;">Hyderabad, India &nbsp<img style="vertical-align:middle;" width=15 src="./svg/in.svg" ></td>
+					<td style="width:16%;">Oct 28, 2021 </td>
+					<td style="width:16%;">Nov 04, 2021</td>
+					<td style="width:14%;">April 11 - April 14, 2022</td>
+					<td style="width:20%;"><a href="https://dasfaa2022.org">https://dasfaa2022.org</a></td>
+					<td style="width:7%;text-align:center;">DM</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>B/B</strong></td>
+					<td style="width:20%;"><strong>ICDM 2021</strong><strong>:</strong>&nbsp;International Conference on Data Mining</td>
+					<td style="width:16%;">Auckland, New Zealand   &nbsp<img style="vertical-align:middle;" width=15 src="./svg/nz.svg" ></td>
+					<td style="width:16%;">0 0, 2021 </td>
+					<td style="width:16%;">Jun 11, 2021</td>
+					<td style="width:14%;">Dec 7 - Dec 10, 2021</td>
+					<td style="width:20%;"><a href="https://icdm2021.auckland.ac.nz/">https://icdm2021.auckland.ac.nz</a></td>
+					<td style="width:7%;text-align:center;">DM</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>B/B</strong></td>
+					<td style="width:20%;"><strong>SDM 2022</strong><strong>:</strong>&nbsp;SIAM International Conference on Data Mining</td>
+					<td style="width:16%;">Alexandria, Virginia, USA  &nbsp<img style="vertical-align:middle;" width=15 src="./svg/us.svg" ></td>
+					<td style="width:16%;">Oct 12, 2021 </td>
+					<td style="width:16%;">Oct 12, 2021</td>
+					<td style="width:14%;">Apr 28 - Apr 30, 2022</td>
+					<td style="width:20%;"><a href="https://www.siam.org/conferences/cm/conference/sdm22">https://www.siam.org/conferences/cm/conference/sdm22</a></td>
+					<td style="width:7%;text-align:center;">DM</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>B/B</strong></td>
+					<td style="width:20%;"><strong>CIDR 2022</strong><strong>:</strong>&nbsp;International Conference on Innovative Data Systems Research</td>
+					<td style="width:16%;">Chaminade, CA, USA  &nbsp<img style="vertical-align:middle;" width=15 src="./svg/us.svg" ></td>
+					<td style="width:16%;">Aug 31, 2021 </td>
+					<td style="width:16%;">Aug 31, 2021</td>
+					<td style="width:14%;">Jan 10 - Jan 13, 2022</td>
+					<td style="width:20%;"><a href="http://cidrdb.org/cidr2022/index.html">http://cidrdb.org/cidr2022/index.html</a></td>
+					<td style="width:7%;text-align:center;">DM</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>B/B</strong></td>
+					<td style="width:20%;"><strong>ISWC 2022</strong><strong>:</strong>&nbsp;IEEE International Semantic Web Conference</td>
+					<td style="width:16%;">Online</td>
+					<td style="width:16%;">Apr 12, 2021 </td>
+					<td style="width:16%;">Apr 19, 2021</td>
+					<td style="width:14%;">Oct 24 - Oct 28, 2021</td>
+					<td style="width:20%;"><a href="https://iswc2021.semanticweb.org/">https://iswc2021.semanticweb.org</a></td>
+					<td style="width:7%;text-align:center;">DM</td>
+				</tr>
+				<!-- AI -->
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>A/A</strong></td>
+					<td style="width:20%;"><strong>AAAI 2022</strong><strong>:</strong>&nbsp;Association for the Advancement of Artificial Intelligence</td>
+					<td style="width:16%;">Vancouver, British Columbia, Canada   &nbsp<img style="vertical-align:middle;" width=15 src="./svg/ca.svg" ></td>
+					<td style="width:16%;">Aug 30, 2021 </td>
+					<td style="width:16%;">Sep 8, 2021</td>
+					<td style="width:14%;">Feb 22 - Mar 1, 2022</td>
+					<td style="width:20%;"><a href="https://aaai.org/Conferences/AAAI-22">https://aaai.org/Conferences/AAAI-22</a></td>
+					<td style="width:7%;text-align:center;">AI</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>A/A</strong></td>
+					<td style="width:20%;"><strong>NeurIPS 2021</strong><strong>:</strong>&nbsp;Neural Information Processing Systems</td>
+					<td style="width:16%;">Online</td>
+					<td style="width:16%;">May 21, 2021 </td>
+					<td style="width:16%;">May 28, 2021</td>
+					<td style="width:14%;">Dec 6 - Dec 14, 2021</td>
+					<td style="width:20%;"><a href="https://nips.cc/Conferences/2021">https://nips.cc/Conferences/2021</a></td>
+					<td style="width:7%;text-align:center;">AI</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>A/A</strong></td>
+					<td style="width:20%;"><strong>ICML 2021</strong><strong>:</strong>&nbsp;International Conference on Machine Learning</td>
+					<td style="width:16%;">Online</td>
+					<td style="width:16%;">Jan 28, 2021 </td>
+					<td style="width:16%;">Feb 4, 2021</td>
+					<td style="width:14%;">Jul 18 - Jul 24, 2021</td>
+					<td style="width:20%;"><a href="https://icml.cc/Conferences/2021">https://icml.cc/Conferences/2021</a></td>
+					<td style="width:7%;text-align:center;">AI</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>-/A</strong></td>
+					<td style="width:20%;"><strong>ICLR 2022</strong><strong>:</strong>&nbsp;International Conference on Learning Representations</td>
+					<td style="width:16%;">Vienna, Austria   &nbsp<img style="vertical-align:middle;" width=15 src="./svg/at.svg" ></td>
+					<td style="width:16%;">Sep 28, 2021 </td>
+					<td style="width:16%;">Oct 5, 2021</td>
+					<td style="width:14%;">Apr 25 - Apr 29, 2022</td>
+					<td style="width:20%;"><a href="https://iclr.cc/Conferences/2022">https://iclr.cc/Conferences/2022</a></td>
+					<td style="width:7%;text-align:center;">AI</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>A/B</strong></td>
+					<td style="width:20%;"><strong>IJCAI 2022</strong><strong>:</strong>&nbsp;International Joint Conference on Artificial Intelligence</td>
+					<td style="width:16%;">Montreal, Canada   &nbsp<img style="vertical-align:middle;" width=15 src="./svg/ca.svg" ></td>
+					<td style="width:16%;">Jan 7, 2022</td>
+					<td style="width:16%;">Jan 14, 2022</td>
+					<td style="width:14%;">Jul 23 - Jul 29, 2022</td>
+					<td style="width:20%;"><a href="https://ijcai-22.org/">https://ijcai-22.org/</a></td>
+					<td style="width:7%;text-align:center;">AI</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>B/B</strong></td>
+					<td style="width:20%;"><strong>AAMAS 2022</strong><strong>:</strong>&nbsp;International Conference on Autonomous Agents and Multiagent Systems</td>
+					<td style="width:16%;">Auckland, New Zealand   &nbsp<img style="vertical-align:middle;" width=15 src="./svg/nz.svg" ></td>
+					<td style="width:16%;">Oct 1, 2021 </td>
+					<td style="width:16%;">Oct 8, 2021</td>
+					<td style="width:14%;">May 9 - May 13, 2022</td>
+					<td style="width:20%;"><a href="https://aamas2022-conference.auckland.ac.nz/">https://aamas2022-conference.auckland.ac.nz/</a></td>
+					<td style="width:7%;text-align:center;">AI</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>C/B</strong></td>
+					<td style="width:20%;"><strong>ICPR 2022</strong><strong>:</strong>&nbsp;International Conference on Pattern Recognition</td>
+					<td style="width:16%;">Montréal, Québec, Canada   &nbsp<img style="vertical-align:middle;" width=15 src="./svg/ca.svg" ></td>
+					<td style="width:16%;">Jan 17, 2022 </td>
+					<td style="width:16%;">Jul 17, 2022 </td>
+					<td style="width:14%;">Aug 21 - Aug 25, 2022</td>
+					<td style="width:20%;"><a href="http://www.icpr2022.com/">http://www.icpr2022.com</a></td>
+					<td style="width:7%;text-align:center;">AI</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>C/B</strong></td>
+					<td style="width:20%;"><strong>IJCNN 2022</strong><strong>:</strong>&nbsp;International Joint Conference on Neural Networks</td>
+					<td style="width:16%;">Online</td>
+					<td style="width:16%;">Jan 31, 2022 </td>
+					<td style="width:16%;">Jan 31, 2022</td>
+					<td style="width:14%;">Jul 18 - Jul 23, 2022</td>
+					<td style="width:20%;"><a href="https://wcci2022.org/">https://wcci2022.org/</a></td>
+					<td style="width:7%;text-align:center;">AI</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>C/B</strong></td>
+					<td style="width:20%;"><strong>AISTATS 2022</strong><strong>:</strong>&nbsp;International Conference on Artificial Intelligence and Statistics</td>
+					<td style="width:16%;">Valencia, Spain  &nbsp<img style="vertical-align:middle;" width=15 src="./svg/es.svg" ></td>
+					<td style="width:16%;">Oct 8, 2021 </td>
+					<td style="width:16%;">Oct 15, 2021</td>
+					<td style="width:14%;">Mar 30 - Apr 1, 2022</td>
+					<td style="width:20%;"><a href="https://www.aistats.org/aistats2022">https://www.aistats.org/aistats2022</a></td>
+					<td style="width:7%;text-align:center;">AI</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>C/B</strong></td>
+					<td style="width:20%;"><strong>GECCO 2022</strong><strong>:</strong>&nbsp;Genetic and Evolutionary Computation Conference</td>
+					<td style="width:16%;">Boston, USA   &nbsp<img style="vertical-align:middle;" width=15 src="./svg/us.svg" ></td>
+					<td style="width:16%;">Feb 4, 2022 (TBD) </td>
+					<td style="width:16%;">Feb 4, 2022 (TBD)</td>
+					<td style="width:14%;">Jul 9 - Jul 13, 2022</td>
+					<td style="width:20%;"><a href="https://gecco-2022.sigevo.org/">https://gecco-2022.sigevo.org</a></td>
+					<td style="width:7%;text-align:center;">AI</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>C/B</strong></td>
+					<td style="width:20%;"><strong>ALT 2022</strong><strong>:</strong>&nbsp;International Conference on Algorithmic Learning Theory</td>
+					<td style="width:16%;">Paris, France   &nbsp<img style="vertical-align:middle;" width=15 src="./svg/fr.svg" ></td>
+					<td style="width:16%;">Oct 5, 2021 </td>
+					<td style="width:16%;">Oct 5, 2021</td>
+					<td style="width:14%;">Mar 16 - Mar 19, 2022 (TBD)</td>
+					<td style="width:20%;"><a href="http://algorithmiclearningtheory.org/alt2022">http://algorithmiclearningtheory.org/alt2022</a></td>
+					<td style="width:7%;text-align:center;">AI</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>B/A</strong></td>
+					<td style="width:20%;"><strong>COLT 2021</strong><strong>:</strong>&nbsp;Conference on Learning Theory</td>
+					<td style="width:16%;">Boulder, Colorado, USA   &nbsp<img style="vertical-align:middle;" width=15 src="./svg/us.svg" ></td>
+					<td style="width:16%;">Jan 29, 2021 </td>
+					<td style="width:16%;">Jan 29, 2021</td>
+					<td style="width:14%;">Jul 7 - Jul 10, 2021</td>
+					<td style="width:20%;"><a href="http://www.learningtheory.org/colt2021">http://www.learningtheory.org/colt2021</a></td>
+					<td style="width:7%;text-align:center;">AI</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>B/B</strong></td>
+					<td style="width:20%;"><strong>UAI 2021</strong><strong>:</strong>&nbsp;Conference on Uncertainty in Artificial Intelligence</td>
+					<td style="width:16%;">Online</td>
+					<td style="width:16%;">Feb 20, 2021 </td>
+					<td style="width:16%;">Feb 20, 2021</td>
+					<td style="width:14%;">Jul 27 - Jul 30, 2021</td>
+					<td style="width:20%;"><a href="http://auai.org/uai2021">http://auai.org/uai2021</a></td>
+					<td style="width:7%;text-align:center;">AI</td>
+				</tr>
+				<!-- NLP -->
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>A/A</strong></td>
+					<td style="width:20%;"><strong>ACL 2021</strong><strong>:</strong>&nbsp;Annual Meeting of the Association for Computational Linguistics</td>
+					<td style="width:16%;">Bangkok, Thailand   &nbsp<img style="vertical-align:middle;" width=15 src="./svg/th.svg" ></td>
+					<td style="width:16%;">Jan 25, 2021 </td>
+					<td style="width:16%;">Feb 1, 2021</td>
+					<td style="width:14%;">Aug 1 - Aug 6, 2021</td>
+					<td style="width:20%;"><a href="https://2021.aclweb.org/">https://2021.aclweb.org</a></td>
+					<td style="width:7%;text-align:center;">NLP</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>B/A</strong></td>
+					<td style="width:20%;"><strong>EMNLP 2021</strong><strong>:</strong>&nbsp;Conference on Empirical Methods in Natural Language Processing</td>
+					<td style="width:16%;">Punta Cana, Dominican Republic   &nbsp<img style="vertical-align:middle;" width=15 src="./svg/do.svg" ></td>
+					<td style="width:16%;">May 10, 2021 </td>
+					<td style="width:16%;">May 17, 2021</td>
+					<td style="width:14%;">Nov 7 - Nov 11, 2021</td>
+					<td style="width:20%;"><a href="https://2021.emnlp.org/">https://2021.emnlp.org</a></td>
+					<td style="width:7%;text-align:center;">NLP</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>B/B</strong></td>
+					<td style="width:20%;"><strong>COLING 2022</strong><strong>:</strong>&nbsp;International Conference on Computational Linguistics</td>
+					<td style="width:16%;">Gyeongju, Korea   &nbsp<img style="vertical-align:middle;" width=15 src="./svg/kr.svg" ></td>
+					<td style="width:16%;">Jul 1, 2021 (TBD) </td>
+					<td style="width:16%;">Jul 1, 2021 (TBD)</td>
+					<td style="width:14%;">Oct 12 - Oct 17, 2022 </td>
+					<td style="width:20%;"><a href="http://coling2022.org/">http://coling2022.org</a></td>
+					<td style="width:7%;text-align:center;">NLP</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>C/B</strong></td>
+					<td style="width:20%;"><strong>NAACL 2022</strong><strong>:</strong>&nbsp;North American Chapter of the Association for Computational Linguistics</td>
+					<td style="width:16%;">Seattle, Washington, USA  &nbsp<img style="vertical-align:middle;" width=15 src="./svg/us.svg" ></td>
+					<td style="width:16%;">Nov 23, 2021 (TBD)</td>
+					<td style="width:16%;">Nov 23, 2021 (TBD)</td>
+					<td style="width:14%;">Jul 10 - Jul 15, 2022</td>
+					<td style="width:20%;"><a href="https://2022.naacl.org/">https://2022.naacl.org</a></td>
+					<td style="width:7%;text-align:center;">NLP</td>
+				</tr>
+				<!-- CV -->
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>A/A</strong></td>
+					<td style="width:20%;"><strong>CVPR 2022</strong><strong>:</strong>&nbsp;IEEE Conference on Computer Vision and Pattern Recognition</td>
+					<td style="width:16%;">New Orleans, Louisiana, USA   &nbsp<img style="vertical-align:middle;" width=15 src="./svg/us.svg" ></td>
+					<td style="width:16%;">Nov 16, 2021 </td>
+					<td style="width:16%;">Nov 16, 2021 </td>
+					<td style="width:14%;">Jun 21 - Jun 24, 2022 (TBD)</td>
+					<td style="width:20%;"><a href="http://cvpr2022.thecvf.com/">http://cvpr2022.thecvf.com</a></td>
+					<td style="width:7%;text-align:center;">CV</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>A/A</strong></td>
+					<td style="width:20%;"><strong>ICCV 2021</strong><strong>:</strong>&nbsp;International Conference on Computer Vision</td>
+					<td style="width:16%;">Montreal, Canada   &nbsp<img style="vertical-align:middle;" width=15 src="./svg/ca.svg" ></td>
+					<td style="width:16%;">Mar 17, 2021 </td>
+					<td style="width:16%;">Mar 17, 2021</td>
+					<td style="width:14%;">Oct 11 - Oct 17, 2021</td>
+					<td style="width:20%;"><a href="http://iccv2021.thecvf.com/">http://iccv2021.thecvf.com</a></td>
+					<td style="width:7%;text-align:center;">CV</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>B/A</strong></td>
+					<td style="width:20%;"><strong>ECCV 2020</strong><strong>:</strong>&nbsp;European Conference on Computer Vision</td>
+					<td style="width:16%;">Glasgow, Scotland, UK   &nbsp<img style="vertical-align:middle;" width=15 src="./svg/gb.svg" ></td>
+					<td style="width:16%;">Mar 5, 2021 </td>
+					<td style="width:16%;">Mar 5, 2020</td>
+					<td style="width:14%;">Aug 23 - Aug 28, 2020</td>
+					<td style="width:20%;"><a href="http://eccv2020.eu/">http://eccv2020.eu</a></td>
+					<td style="width:7%;text-align:center;">CV</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>C/B</strong></td>
+					<td style="width:20%;"><strong>BMVC 2021</strong><strong>:</strong>&nbsp;British Machine Vision Conference</td>
+					<td style="width:16%;">Manchester, England, UK   &nbsp<img style="vertical-align:middle;" width=15 src="./svg/gb.svg" ></td>
+					<td style="width:16%;">Jun 18, 2021 </td>
+					<td style="width:16%;">Jun 25, 2021 </td>
+					<td style="width:14%;">Nov 22 - Nov 25, 2021</td>
+					<td style="width:20%;"><a href="http://www.bmvc2021.com/">http://www.bmvc2021.com</a></td>
+					<td style="width:7%;text-align:center;">CV</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>-/-</strong></td>
+					<td style="width:20%;"><strong>WACV 2022</strong><strong>:</strong>&nbsp;Winter Conference on Applications of Computer Vision</td>
+					<td style="width:16%;">Waikoloa, Hawaii, USA   &nbsp<img style="vertical-align:middle;" width=15 src="./svg/us.svg" ></td>
+					<td style="width:16%;">Aug 11, 2021 </td>
+					<td style="width:16%;">Aug 11, 2021 </td>
+					<td style="width:14%;">Jan 4 - Jan 4, 2022</td>
+					<td style="width:20%;"><a href="http://wacv2022.thecvf.com/">http://wacv2022.thecvf.com</a></td>
+					<td style="width:7%;text-align:center;">CV</td>
+				</tr>
+				<!-- MM -->
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>A/A</strong></td>
+					<td style="width:20%;"><strong>ACMMM 2021</strong><strong>:</strong>&nbsp;ACM Multimedia</td>
+					<td style="width:16%;">Chengdu, China   &nbsp<img style="vertical-align:middle;" width=15 src="./svg/cn.svg" ></td>
+					<td style="width:16%;">Apr 17, 2021 </td>
+					<td style="width:16%;">Apr 17, 2021</td>
+					<td style="width:14%;">Oct 20 - Oct 24, 2021</td>
+					<td style="width:20%;"><a href="https://2021.acmmm.org/">https://2021.acmmm.org</a></td>
+					<td style="width:7%;text-align:center;">MM</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>B/B</strong></td>
+					<td style="width:20%;"><strong>ICASSP 2022</strong><strong>:</strong>&nbsp;International Conference on Acoustics, Speech and Signal Processing</td>
+					<td style="width:16%;">Singapore   &nbsp<img style="vertical-align:middle;" width=15 src="./svg/sg.svg" ></td>
+					<td style="width:16%;">Oct 1, 2021 </td>
+					<td style="width:16%;">Oct 1, 2021</td>
+					<td style="width:14%;">May 22 - May 27, 2022</td>
+					<td style="width:20%;"><a href="http://2022.ieeeicassp.org/">http://2022.ieeeicassp.org</a></td>
+					<td style="width:7%;text-align:center;">MM</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>B/B</strong></td>
+					<td style="width:20%;"><strong>ICMR 2022</strong><strong>:</strong>&nbsp;ACM International Conference on Multimedia Retrieval</td>
+					<td style="width:16%;">Newark, New Jersey, USA   &nbsp<img style="vertical-align:middle;" width=15 src="./svg/us.svg" ></td>
+					<td style="width:16%;">Feb 21, 2022 (TBD) </td>
+					<td style="width:16%;">Feb 21, 2022 (TBD)</td>
+					<td style="width:14%;">Jul 12 - Jul 15, 2022 (TBD)</td>
+					<td style="width:20%;"><a href="http://icmr2022.org/">http://icmr2022.org</a></td>
+					<td style="width:7%;text-align:center;">MM</td>
+				</tr>
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>B/-</strong></td>
+					<td style="width:20%;"><strong>ICME 2022</strong><strong>:</strong>&nbsp;International Conference on Multimedia and Expo</td>
+					<td style="width:16%;">Taipei, Taiwan, China   &nbsp<img style="vertical-align:middle;" width=15 src="./svg/cn.svg" ></td>
+					<td style="width:16%;">Nov 29, 2021 (TBD)</td>
+					<td style="width:16%;">Nov 29, 2021 (TBD)</td>
+					<td style="width:14%;">Jul 11 - Jul 15, 2022</td>
+					<td style="width:20%;"><a href="http://2022.ieeeicme.org/">http://2022.ieeeicme.org</a></td>
+					<td style="width:7%;text-align:center;">MM</td>
+				</tr>
+				<!-- ID -->
+				<tr>
+					<td style="width:7%;text-align:center; padding:1px;"><strong>A/A</strong></td>
+					<td style="width:20%;"><strong>WWW 2022</strong><strong>:</strong>&nbsp;International World Wide Web Conferences</td>
+					<td style="width:16%;"> Lyon, France  &nbsp<img style="vertical-align:middle;" width=15 src="./svg/fr.svg" ></td>
+					<td style="width:16%;">Oct 14, 2021 </td>
+					<td style="width:16%;">Oct 21, 2021</td>
+					<td style="width:14%;">Apr 25 - Apr 29, 2022</td>
+					<td style="width:20%;"><a href="https://www2022.thewebconf.org/">https://www2022.thewebconf.org</a></td>
+					<td style="width:7%;text-align:center;">ID</td>
+				</tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div align="center" style="margin:auto;padding-top:10px">
+
+			<p style="text-align:center;padding-top:5px;">  Maintained by <strong>Leixian Shen</strong>, School of Software, Tsinghua University</p>
+            <div style="width:15%">
+                <script type="text/javascript" id="clstr_globe" src="./js/globe-1.js-d=5t-vpdfoyawmnyzgelsivpz7ijglgwjvffgbphodbs8.js" ></script>
+				<!-- <canvas id="canvas" width="400" height="400" ></canvas> -->
+				<!-- <script src="./js/index.js"></script> -->
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
